@@ -5,11 +5,11 @@
 EXILIM FR100との接続を前提としています。
 Android版のみのリリースです。
 
-#インストール方法
+# インストール方法
 
 Device Web API Managerをインストール済みの Android 端末に、EXILIM プラグインのAPKファイルをインストールしてください。
 
-#使用方法
+# 使用方法
 
 * Device Web API Managerの設定を変更し、Device Web API Managerを有効にしてください
 
