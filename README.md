@@ -5,7 +5,7 @@
 EXILIM FR100, FR200等の無線対応カメラに接続して操作することができます。
 Android版のAPKファイルの公開です。
 
-(OSバージョンなどの対応条件)
+(Android Ver.4.4以上対応)
 
 # ファイル構成
 
@@ -21,7 +21,6 @@ Android版のAPKファイルの公開です。
 
 Device Web API Managerをインストール済みの Android 端末に、EXILIM プラグインのAPKファイルをインストールしてください。
 
-(URL)
 
 # 使用方法
 
