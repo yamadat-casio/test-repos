@@ -1,0 +1,349 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "スマートデバイスによる写真撮影、動画録画または音声録音などの操作を行うAPI。",
+        "version": "2.0.0",
+        "title": "Media Stream Recording Profile"
+    },
+    "consumes": [
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "paths": {
+        "/preview": {
+            "put": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "target",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PreviewStartResponse"
+                        }
+                    }
+                },
+                "x-type": "streaming"
+            },
+            "delete": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "target",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PreviewStopResponse"
+                        }
+                    }
+                },
+                "x-type": "streaming"
+            }
+        },
+        "/record": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "target",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "timeslice",
+                        "in": "formData",
+                        "required": false,
+                        "type": "integer",
+                        "minimum": 0,
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/RecordResponse"
+                        }
+                    }
+                },
+                "x-type": "one-shot"
+            }
+        },
+        "/stop": {
+            "put": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "target",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/RecorderControlResponse"
+                        }
+                    }
+                },
+                "x-type": "one-shot"
+            }
+        },
+        "/takePhoto": {
+            "post": {
+                "summary": "",
+                "description": "target_idで_photoを指定した場合や省略した場合はは静止画撮影、_liveviewを指定した場合はライブビューの切り抜き画像を取得する\n URIは縮小画像のURIを指している。",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "target",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/TakePhotoResponse"
+                        }
+                    }
+                },
+                "x-type": "one-shot"
+            }
+        },
+        "/onRecordingChange": {
+            "put": {
+                "summary": "スマートデバイスでの写真撮影、動画撮影または音声録音の状態変化通知イベントを開始する。",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "formData",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CommonResponse"
+                        }
+                    }
+                },
+                "x-type": "event"
+            },
+            "delete": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CommonResponse"
+                        }
+                    }
+                },
+                "x-type": "event"
+            }
+        }
+    },
+    "definitions": {
+        "TakePhotoResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResponse"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "path",
+                        "uri"
+                    ],
+                    "properties": {
+                        "uri": {
+                            "type": "string",
+                            "description": "撮影された写真のURI。",
+                            "title": "URI"
+                        },
+                        "path": {
+                            "type": "string",
+                            "description": "撮影された写真へのファイルパス。ルートはデバイスプラグインごとに異なる。File APIのパラメータとして使用可能。",
+                            "title": "ファイルパス"
+                        }
+                    }
+                }
+            ]
+        },
+        "RecordResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResponse"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "path",
+                        "uri"
+                    ],
+                    "properties": {
+                        "uri": {
+                            "type": "string",
+                            "description": "動画または音声のURI。",
+                            "title": "URI"
+                        },
+                        "path": {
+                            "type": "string",
+                            "description": "動画または音声へのファイルパス。ルートはデバイスプラグインごとに異なる。File APIのパラメータとして使用可能。",
+                            "title": "ファイルパス"
+                        }
+                    }
+                }
+            ]
+        },
+        "PreviewStartResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResponse"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "uri"
+                    ],
+                    "properties": {
+                        "uri": {
+                            "type": "string",
+                            "description": "開始したプレビューの配信用URI。形式はMotionJPEGとする。",
+                            "title": "プレビュー配信URI"
+                        },
+                        "audio": {
+                            "type": "object",
+                            "description": "音声配信に関する情報。音声のみの配信をサポートしない場合は省略可。",
+                            "title": "音声配信情報",
+                            "properties": {
+                                "uri": {
+                                    "type": "string",
+                                    "description": "音声配信URI。",
+                                    "title": "音声配信URI"
+                                }
+                            },
+                            "required": [
+                                "uri"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "PreviewStopResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResponse"
+                }
+            ]
+        },
+        "RecorderControlResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResponse"
+                }
+            ]
+        },
+        "CommonResponse": {
+            "type": "object",
+            "required": [
+                "product",
+                "result",
+                "version"
+            ],
+            "properties": {
+                "result": {
+                    "type": "integer",
+                    "description": "0: 正常応答<br>0以外: 異常応答",
+                    "title": "処理結果"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "",
+                    "title": "DeviceConnectシステムの名前"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "",
+                    "title": "DeviceConnectシステムのバージョン名"
+                },
+                "hmac": {
+                    "type": "string",
+                    "description": "アプリケーション側から事前にHMACキーを共有されていた場合は必須。",
+                    "title": "レスポンスに対する署名"
+                }
+            }
+        }
+    }
+}
