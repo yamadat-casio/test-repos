@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "スマートデバイス(Cameraデバイスなど）のズーム操作機能を提供するAPI。",
+        "description": "EXILIMカメラのズーム操作機能を提供するAPI。",
         "version": "2.0.0",
         "title": "Camera Profile"
     },

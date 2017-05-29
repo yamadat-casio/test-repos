@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "",
+        "description": "EXILIMで撮影した写真の縮小画像を扱う",
         "version": "2.0.0",
         "title": "Thumbnail Profile"
     },
@@ -13,7 +13,7 @@
         "/": {
             "get": {
                 "summary": "指定画像のサムネイルを取得する",
-                "description": "",
+                "description": "指定した画像の縮小画像をカメラからコピーし、そのuriを取得する。",
                 "parameters": [
                     {
                         "name": "serviceId",
