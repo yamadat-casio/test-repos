@@ -11,29 +11,8 @@
     ],
     "paths": {
         "/zoom": {
-            "get": {
-                "summary": "",
-                "description": "",
-                "parameters": [
-                    {
-                        "name": "serviceId",
-                        "in": "query",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/GetZoomResponse"
-                        }
-                    }
-                },
-                "x-type": "one-shot"
-            },
             "put": {
-                "summary": "",
+                "summary": "ズーム操作を実行する",
                 "description": "",
                 "parameters": [
                     {
@@ -78,23 +57,6 @@
         }
     },
     "definitions": {
-        "GetZoomResponse": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/CommonResponse"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "zoomPosition": {
-                            "type": "integer",
-                            "description": "カメラの倍率(%)\n例)\nQX-10の場合\n0(%):拡大なし\n50(%):倍率5倍での 拡大。\n",
-                            "title": "カメラの倍率"
-                        }
-                    }
-                }
-            ]
-        },
         "CommonResponse": {
             "type": "object",
             "required": [

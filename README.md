@@ -1,19 +1,25 @@
-# EXILIM プラグイン(下書き)
+# EXILIM プラグイン
 
 デバイスWeb APIで使用するカシオカメラEXILIMシリーズを制御するためのプラグインです。
 
-EXILIM FR100, FR200等の無線対応カメラに接続して操作することができます。
-Android版のAPKファイルの公開です。
+EXILIM 無線対応カメラに接続して操作することができます。
+
+Android版オープンβ版のAPKファイルの公開です。
 
 (Android Ver.4.4以上対応)
 
+動作確認カメラ：EX-FR200, EX-FR100, EX-ZR3200
+
+
 # ファイル構成
 
-* apk : Android用のAPKファイル
+* apk : EXILIM Android用のAPKファイル
 
-	* exilimplugin.apk : EXILIM プラグイン
+	* exilimplugin.apk : EXILIMプラグイン
 
-	* sample.apk : EXILIM プラグインを操作するサンプルアプリ
+	* sample.apk : サンプルアプリ
+
+* sample : EXILIM プラグインを操作するサンプルアプリのプロジェクト
 
 * spec : EXILIM プラグインに実装されているプロファイルおよびAPI仕様
 
@@ -25,10 +31,16 @@ Device Web API Managerをインストール済みの Android 端末に、EXILIM プラグインのAP
 # 使用方法
 
 * Device Web API Managerの設定を変更し、Device Web API Managerを有効にしてください
+	
+	1. Device Web API ManagerをOFFの状態で設定を変更してください
+
+	1. Origin有効化のチェックボックスを外してください
+
+	1. Device Web API ManagerをONにしてください
 
 * EXILIMカメラを起動し、リモート撮影状態で待機してください
 
-	* カメラの操作方法はカメラのマニュアルを参照してください
+	* カメラの操作方法はカメラのマニュアルを参照してください[(オンラインマニュアル)](http://support.casio.jp/manual.php?cid=001)
 
 * EXILIM プラグインをインストールした端末を Wi-Fiでカメラに接続してください
 
@@ -36,3 +48,11 @@ Device Web API Managerをインストール済みの Android 端末に、EXILIM プラグインのAP
 
 
 詳細な使用方法は[こちら](https://github.com/yamadat-casio/test-repos/wiki)を参照してください。
+
+# サンプルアプリ
+
+動作確認用のサンプルアプリをAndroid用のAPKファイルとプロジェクトで用意しました。
+
+[APK](https://github.com/yamadat-casio/test-repos/tree/master/sample)
+
+[プロジェクト](https://github.com/yamadat-casio/test-repos/tree/master/sample)
