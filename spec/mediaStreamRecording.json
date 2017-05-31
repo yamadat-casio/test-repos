@@ -69,7 +69,7 @@
         "/record": {
             "post": {
                 "summary": "動画撮影を開始する",
-                "description": "カメラで動画撮影を開始する。録画終了時にレスポンスが返り、その中のpathにデータ取得用のファイルパスが指定されている。カメラから状態変化の通知として onRecordingChangeのイベン通知される。",
+                "description": "カメラで動画撮影を開始する。録画終了時にレスポンスが返り、その中のpathにデータ取得用のファイルパスが指定されている。カメラから状態変化の通知として onRecordingChangeのイベント通知される。",
                 "parameters": [
                     {
                         "name": "serviceId",
